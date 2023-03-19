@@ -7,18 +7,21 @@ which currently sends 5000 messages to stage-one with a 2 millisecond delay betw
 
 The stages communicate via unix sockets. 
 
-    unix-sender                                          stage-one                   stage-two                stage-final
+unix-sender -> stage-one -> stage-two -> stage-final
 
-1. message format:                                  process each message          injects 100 ms            injects 100 ms
-                                                    injecting 25 ms delay         delay simulated           delay simulated
-type InputMessage struct {                          representing a small          work in this stage.       work in this stage.
-	Id          int64  `json:"id"`                    amount of work possibly
-	ShortCode   string `json:"shortcode"`             done to each message
-	Destination string `json:"destination"`           in this stage before
-	Tag         string `json:"tag"`                   being sent on to the
-}                                                   the next stage.
-   inject a 2 millisecond delay
-   between each message. 
+1. unix-sender message format:       
+                                              
+type InputMessage struct {                      
+	Id          int64  `json:"id"`                    
+	ShortCode   string `json:"shortcode"`             
+	Destination string `json:"destination"`           
+	Tag         string `json:"tag"`                   
+}                                                 
+The sender injects a 2 millisecond delay between each message to control the message transmission rate.
+   
+2. stage-one injects a 25 millisecond delay representing some amount of work being done on each message
+3. stage-two and stage-final both inject a 100 millisecond delay representing some amount of work being done on each message.
+
    
 Running at the current default settings on a dell intel COREi7 laptop each message was captured, processed and passed along
 with no data loss. However, depending on the speed of the test machine, the message rate may need adjustment to avoid data
