@@ -58,3 +58,6 @@ const (
 Notice the pattern here naming in and out sockets. The socket path must be a valid existing location on your machine.
 
 No great contibution to computer science here but an interesting example project helping to learn go.
+
+References:
+devlights go-unix-domain-socket-example 
