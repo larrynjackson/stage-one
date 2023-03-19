@@ -1,7 +1,7 @@
 # stage-one
 
 The three projects, stage-one, stage-two and stage-final, repesent a real-time message processing simulation system capable of processing
-500 incoming messages per second. Each stage runs as a stand-alone go application on the same machine. To run the simulation as currently
+150 incoming messages per second. Each stage runs as a stand-alone go application on the same machine. To run the simulation as currently
 configured deploy the three stages and start each from the main.go directory with the 'go run .' command. Deploy the unix-sender project
 which currently sends 5000 messages to stage-one with a 2 millisecond delay between each sent message and run it.
 
@@ -30,8 +30,8 @@ the default unix socket buffer size during the time each message is received and
 is taken from the queue, processed (injected delay) and passed along to the next stage. The link-list queue acts as a flexable
 buffer.
 
-The simulated data feed is a constant message rate of 500 per second intended to stress the system during testing. In a real-time
-system the input data rate is expected to vary with bursts up to 500 messages per second. The internal queue allows each stage to
+The simulated data feed is a constant message rate of 150 per second intended to stress the system during testing. In a real-time
+system the input data rate is expected to vary with bursts up to 150 messages per second. The internal queue allows each stage to
 expand and contract as the message rate varies. The stage-two code is identical to stage-one with only the simulated delay being
 different. Therefore, as many intermediate stages as needed can be inserted into the system as the message processing time increases.
 
