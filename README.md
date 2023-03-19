@@ -38,6 +38,23 @@ different. Therefore, as many intermediate stages as needed can be inserted into
 Once the system is up and running, any down-stream stage after stage-one can be stopped and restarted with no loss of data so
 long as the previous stage queue can grow without exceeding available system memory. This characteristic does seem to have its 
 advantages. Each individual stage's processing capability can be managed as independent code base. The code base can be modified
-and deployed no negative impact to the working system.
+and deployed with no negative impact to the working system.
+
+stage-one
+const (
+	protocol           = "unix"
+	sockAddrIn  string = "/temp/stage-one-socket"
+	sockAddrOut string = "/temp/stage-two-socket"
+)
+
+
+stage-two
+const (
+	protocol           = "unix"
+	sockAddrIn  string = "/temp/stage-two-socket"
+	sockAddrOut string = "/temp/stage-final-socket"
+)
+
+Notice the pattern here naming in and out sockets. The socket path must be a valid existing location on your machine.
 
 No great contibution to computer science here but an interesting example project helping to learn go.
