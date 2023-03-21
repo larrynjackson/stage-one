@@ -57,7 +57,8 @@ const (
 
 Notice the pattern here naming in and out sockets. The socket path must be a valid existing location on your machine.
 
-No great contibution to computer science here but an interesting example project helping to learn go.
+No great contibution to computer science here but an interesting example project helping to learn go. But this code has many
+issues that need to be resolved to stop an intermediate stage and restart it without messages being lost.
 
 References:
 devlights go-unix-domain-socket-example 
